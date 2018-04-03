@@ -1,0 +1,66 @@
+
+body {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 175%;
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+#evaluated {
+    color: #999;
+}
+
+.board {
+    float: left;
+    font-size: 250%;
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.board td {
+    height: 120px;
+    text-align: center;
+    vertical-align: middle;
+    width: 120px;
+}
+
+.board td.winner {
+    color: #00CC00;
+}
+
+.board td.best {
+    background-color: #F5F5F5;
+}
+
+.board #one,
+.board #two {
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+}
+
+.board #three,
+.board #six {
+    border-bottom: 1px solid #CCC;
+}
+
+.board #four,
+.board #five {
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+}
+
+.board #seven,
+.board #eight {
+    border-right: 1px solid #CCC;
+}
+
+.board td.highlight {
+    background-color: #F5F5F5;
+}
+
