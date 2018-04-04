@@ -1,37 +1,71 @@
-<!doctype html>
-<html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Tic Tac Toe</title>
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen" charset="utf-8">
-    </head>
 
-    <body>
-        <h1>Tic Tac Toe</h1>
-        <table id="board" class="board">
-            <tr>
-                <td id="one"></td>
-                <td id="two"></td>
-                <td id="three"></td>
-            </tr>
-            <tr>
-                <td id="four"></td>
-                <td id="five"></td>
-                <td id="six"></td>
-            </tr>
-            <tr>
-                <td id="seven"></td>
-                <td id="eight"></td>
-                <td id="nine"></td>
-            </tr>
-        </table>
-
-        <script src="http://code.jquery.com/jquery-1.5.1.js" type="text/javascript" charset="utf-8"></script>
-        <script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript" charset="utf-8">
-            $(function() {
-                $("#board").tictac().css("border", "1px solid #CC0000");
-            });
-        </script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen" charset="utf-8">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                <h4>Nolan Kern Tick Tack Toe Multiplayer</h4>
+                <!-- My info links -->
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="https://nolankern.github.io/TickTacToe/index.html">Home</a></li>
+                    <li><a href="https://nolankern.github.io/Homework2/reactive-portfolio/">About Me</a></li>
+                    <li><a href="https://nolankern.github.io/Homework2/reactive-portfolio/portfolio.html">Portfolio</a></li>
+                </ul>
+            </div>
+              
+            <div class="col-sm-8">
+                <!-- Creating Grid for The Game -->
+                <h1>Tic Tac Toe</h1>
+                    <table id="board" class="board">
+                        <tr>
+                            <td id="one"></td>
+                            <td id="two"></td>
+                            <td id="three"></td>
+                        </tr>
+                        <tr>
+                            <td id="four"></td>
+                            <td id="five"></td>
+                            <td id="six"></td>
+                        </tr>
+                        <tr>
+                            <td id="seven"></td>
+                            <td id="eight"></td>
+                            <td id="nine"></td>
+                        </tr>
+                    </table>
+            </div>
+            <!-- Dispay for the number of wins both players have acheived -->
+            <div class="col-sm-2 sidenav">
+                <div id="xWins">X Wins: </div>
+                <div id="oWins">O Wins: </div>
+                <div id="ties">Ties: </div>
+            </div>
+        </div>
+    </div>
+              
+<footer class="container-fluid">
+    <p>Created by: Nolan Kern</p>
+</footer>
+              
+<script src="http://code.jquery.com/jquery-1.5.1.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/js/whatneedstohappen.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    // creates board layout
+    $(function() {
+        $("#board").tictac().css("border", "1px solid #CC0000");
+    });
+</script>
+</body>
 </html>
