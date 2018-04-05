@@ -8,7 +8,14 @@ var playerXTurn = [1,3,5,7,9];
 var playerYTurn = [2,4,6,8];
 var xWins=0;
 var oWins=0;
-
+var num = -1;
+var xHere=false;
+var oHere=false;
+var possibleWins = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
+];
 
 // Initialize Firebase
 var config = {
@@ -24,35 +31,52 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 var database = firebase.database();
 
-    database.ref("/players/").on("value", function(snapshot){
-        if(snapshot.child("playerX").exists()){
+var connectionsRef = database.ref("/connections");
+
+var connectedRef = database.ref(".info/connected");
+
+connectedRef.on("value", function(snap) {
+    // If they are connected..
+
+
+    var con = connectionsRef.push("playerX");
+      // Remove user from the connection list when they disconnect.
+      con.onDisconnect().remove();
+
+  });
+
+  connectionsRef.on("value", function(snapshot) {
+      var keys = Object.keys(snapshot.val());
+        if(snapshot.val()[keys[0]]==="playerX"){
             console.log("1 player filled");
-            playerX = snapshot.val().playerX;
-
-
+            playerX = snapshot.val()[keys[0]];
+            xHere=true;
         }
         else{
             playerX= null;
             database.ref("/winrates/").remove();
+            xHere=false;
         }
 
-        if(snapshot.child("player2").exists()){
+        if(snapshot.val()[keys[3]]==="playerX"){
+            snapshot.val()[keys[3]]="playerO";
             console.log("both players here");
-            playerO = snapshot.val().playerO;
+            playerO = snapshot.val()[keys[3]];
+            oHere=true;
         }
         else{
             playerO=null;
+            oHere=false;
         }
 
-        if(playerX && player0){
+        if(xHere && oHere){
             turn+=1;
+            console.log(turn);
         }
     })
 
-    database.ref("/players/").on("child_removed", function(snapshot){
-        console.log("need more players");
-        console.log(database.ref("/players").length);
-    })
+
+
 
     // return 
     $(this).each(function() {
@@ -71,13 +95,12 @@ var database = firebase.database();
           var square = $(this);
           var squareIndex = squares.index(square);
           var played = false;
-          turn+=1;
 
             if(playerXTurn.indexOf(turn)>=0){
                 // fill in the square with an X if it's open
                 if(square.text() === "") {
                     square.text(X);
-                    turn=true;
+                    turn+=1;
                 } else {
                     return;
                 }
@@ -113,7 +136,7 @@ var database = firebase.database();
                 // fill in the square with an O if it's open
                 if(square.text() === "") {
                     square.text(O);
-                    turn=false;
+                    turn+=1;
                 } else {
                     return;
                 }          
